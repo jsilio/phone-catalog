@@ -4,18 +4,19 @@ const prisma = new PrismaClient();
 async function main() {
   const allPhones = [
     {
-      name: "iPhone 12 Pro",
+      name: "iPhone 13",
       manufacturer: "Apple",
-      color: "black",
-      price: 1159,
-      imageUrl:
-        "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-12-pro-graphite-hero?wid=470&hei=556&fmt=png-alpha&.v=1601620625000",
-      screen: "4,7 inch IPS",
-      processor: "A14 Bionic",
+      color: "Midnight",
+      price: 819,
+      imageUrl: "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-13.jpg",
+      screen: "6.1 inch XDR OLED",
+      processor: "A15 Bionic",
       ram: 128,
+      camera: "12 MP",
+      battery: "3240 mAh",
     },
     {
-      name: "iPhone 12",
+      name: "iPhone 13 Pro",
       manufacturer: "Apple",
       color: "black",
       price: 909,

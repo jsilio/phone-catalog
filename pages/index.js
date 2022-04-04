@@ -1,3 +1,4 @@
+import prisma from "@/lib/prisma";
 import Head from "next/head";
 import Image from "next/image";
 import {
@@ -20,32 +21,32 @@ export default function Home({ phones }) {
       </Head>
 
       <main className="">
-        <div className="max-w-7xl mx-auto min-h-screen">
+        <div className="min-h-screen mx-auto max-w-7xl">
           <div className="text-center">
-            <h1 className="font-bold text-5xl tracking-tight text-indigo-500 pt-12 inline-flex items-center">
-              <FaBlenderPhone className="h-8 w-8 mt-2 mr-3" /> katamobil
+            <h1 className="inline-flex items-center pt-12 text-5xl font-bold tracking-tight text-indigo-500">
+              <FaBlenderPhone className="w-8 h-8 mt-2 mr-3" /> katamobil
             </h1>
             <p className="text-gray-700 ">
               Find the perfect mobile with our smartphone specs database.
             </p>
           </div>
 
-          {/* <div className="flex max-w-2xl mx-auto pt-10">
+          {/* <div className="flex max-w-2xl pt-10 mx-auto">
             <div className="w-full">
               <label htmlFor="search" className="sr-only">
                 Search
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <HiSearch
-                    className="h-5 w-5 text-gray-400"
+                    className="w-5 h-5 text-gray-400"
                     aria-hidden="true"
                   />
                 </div>
                 <input
                   id="search"
                   name="search"
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="block w-full py-2 pl-10 pr-3 leading-5 placeholder-gray-500 bg-white border border-gray-300 rounded-md focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
                   placeholder="Search"
                   type="search"
                 />
@@ -56,16 +57,16 @@ export default function Home({ phones }) {
             </div>
           </div> */}
 
-          <div className="max-w-2xl mx-auto pt-12">
+          <div className="max-w-2xl py-12 mx-auto">
             <div className="relative group">
               <div className="absolute inset-0.5 bg-gradient-to-r from-indigo-600 to-sky-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-              <div className="relative bg-white shadow overflow-hidden sm:rounded-lg">
+              <div className="relative overflow-hidden bg-white shadow sm:rounded-lg">
                 <ul role="list" className="divide-y divide-gray-200">
                   {phones.map((phone) => (
                     <li key={phone.id}>
                       <a href={phone.href} className="block hover:bg-gray-50">
                         <div className="flex items-center px-4 py-4 sm:px-6">
-                          <div className="min-w-0 flex-1 flex items-center">
+                          <div className="flex items-center flex-1 min-w-0">
                             <div className="flex-shrink-0">
                               <img
                                 className="h-16 w-14"
@@ -73,9 +74,9 @@ export default function Home({ phones }) {
                                 alt=""
                               />
                             </div>
-                            <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                            <div className="flex-1 min-w-0 px-4 md:grid md:grid-cols-2 md:gap-4">
                               <div>
-                                <p className="text-lg font-semibold hover:text-indigo-700 truncate">
+                                <p className="text-lg font-semibold truncate hover:text-indigo-700">
                                   {phone.name}
                                 </p>
                                 <p className="flex items-center text-sm text-gray-500">
@@ -93,7 +94,7 @@ export default function Home({ phones }) {
                                   <p className="font-medium tracking-tight text-gray-900">
                                     {phone.price} €
                                   </p>
-                                  <p className="mt-2 flex items-center text-sm text-gray-500">
+                                  <p className="flex items-center mt-2 text-sm text-gray-500">
                                     <HiChip
                                       className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
                                       aria-hidden="true"
@@ -106,7 +107,7 @@ export default function Home({ phones }) {
                           </div>
                           <div>
                             <HiChevronRight
-                              className="h-5 w-5 text-gray-400"
+                              className="w-5 h-5 text-gray-400"
                               aria-hidden="true"
                             />
                           </div>
@@ -125,8 +126,10 @@ export default function Home({ phones }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("http://localhost:3000/api/phones");
-  const phones = await res.json();
+  // const res = await fetch("http://localhost:3000/api/phones");
+  // const phones = await res.json();
+
+  const phones = await prisma.phone.findMany();
 
   return {
     props: {
