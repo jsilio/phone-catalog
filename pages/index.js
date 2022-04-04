@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { HiCheckCircle, HiChevronRight, HiMail } from "react-icons/hi";
 
-const applications = [
+const phones = [
   {
     applicant: {
       name: "iPhone 13",
@@ -50,53 +50,50 @@ export default function Home({ phones }) {
 
       <main className="bg-gray-50">
         <div className="max-w-7xl mx-auto min-h-screen">
-          <h1 className="font-bold text-5xl tracking-tight text-center py-12">
+          <h1 className="font-bold text-5xl tracking-tight text-center pt-12">
             Phone Catalog
           </h1>
 
-          <div className="bg-white shadow overflow-hidden sm:rounded-md">
+          <div className="bg-white shadow overflow-hidden sm:rounded-md my-8">
             <ul role="list" className="divide-y divide-gray-200">
-              {applications.map((application) => (
-                <li key={application.applicant.email}>
-                  <a href={application.href} className="block hover:bg-gray-50">
+              {phones.map((phone) => (
+                <li key={phone.id}>
+                  <a href={phone.href} className="block hover:bg-gray-50">
                     <div className="flex items-center px-4 py-4 sm:px-6">
                       <div className="min-w-0 flex-1 flex items-center">
                         <div className="flex-shrink-0">
                           <img
                             className="h-12 w-10"
-                            src={application.applicant.imageUrl}
+                            src={phone.imageUrl}
                             alt=""
                           />
                         </div>
                         <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                           <div>
                             <p className="text-sm font-medium text-indigo-600 truncate">
-                              {application.applicant.name}
+                              {phone.name}
                             </p>
                             <p className="mt-2 flex items-center text-sm text-gray-500">
-                              <HiMail
+                              {/* <HiMail
                                 className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
                                 aria-hidden="true"
-                              />
+                              /> */}
                               <span className="truncate">
-                                {application.applicant.email}
+                                {phone.manufacturer}
                               </span>
                             </p>
                           </div>
                           <div className="hidden md:block">
                             <div>
                               <p className="text-sm text-gray-900">
-                                Applied on{" "}
-                                <time dateTime={application.date}>
-                                  {application.dateFull}
-                                </time>
+                                {phone.price}
                               </p>
                               <p className="mt-2 flex items-center text-sm text-gray-500">
                                 <HiCheckCircle
                                   className="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400"
                                   aria-hidden="true"
                                 />
-                                {application.stage}
+                                {phone.ram}GB
                               </p>
                             </div>
                           </div>
