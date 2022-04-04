@@ -1,42 +1,13 @@
 import Head from "next/head";
 import Image from "next/image";
-import { HiCheckCircle, HiChevronRight, HiMail } from "react-icons/hi";
-
-const phones = [
-  {
-    applicant: {
-      name: "iPhone 13",
-      email: "ricardo.cooper@example.com",
-      imageUrl: "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-13.jpg",
-    },
-    date: "2020-01-07",
-    dateFull: "January 7, 2020",
-    stage: "Completed phone screening",
-    href: "#",
-  },
-  {
-    applicant: {
-      name: "Kristen Ramos",
-      email: "kristen.ramos@example.com",
-      imageUrl: "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-13.jpg",
-    },
-    date: "2020-01-07",
-    dateFull: "January 7, 2020",
-    stage: "Completed phone screening",
-    href: "#",
-  },
-  {
-    applicant: {
-      name: "Ted Fox",
-      email: "ted.fox@example.com",
-      imageUrl: "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-13.jpg",
-    },
-    date: "2020-01-07",
-    dateFull: "January 7, 2020",
-    stage: "Completed phone screening",
-    href: "#",
-  },
-];
+import {
+  HiCheckCircle,
+  HiChevronRight,
+  HiChip,
+  HiMail,
+  HiSearch,
+} from "react-icons/hi";
+import { FaBlenderPhone } from "react-icons/fa";
 
 export default function Home({ phones }) {
   console.log({ phones });
@@ -48,68 +19,104 @@ export default function Home({ phones }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="bg-gray-50">
+      <main className="">
         <div className="max-w-7xl mx-auto min-h-screen">
-          <h1 className="font-bold text-5xl tracking-tight text-center pt-12">
-            Phone Catalog
-          </h1>
+          <div className="text-center">
+            <h1 className="font-bold text-5xl tracking-tight text-indigo-500 pt-12 inline-flex items-center">
+              <FaBlenderPhone className="h-8 w-8 mt-2 mr-3" /> katamobil
+            </h1>
+            <p className="text-gray-700 ">
+              Find the perfect mobile with our smartphone specs database.
+            </p>
+          </div>
 
-          <div className="bg-white shadow overflow-hidden sm:rounded-md my-8">
-            <ul role="list" className="divide-y divide-gray-200">
-              {phones.map((phone) => (
-                <li key={phone.id}>
-                  <a href={phone.href} className="block hover:bg-gray-50">
-                    <div className="flex items-center px-4 py-4 sm:px-6">
-                      <div className="min-w-0 flex-1 flex items-center">
-                        <div className="flex-shrink-0">
-                          <img
-                            className="h-12 w-10"
-                            src={phone.imageUrl}
-                            alt=""
-                          />
-                        </div>
-                        <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
-                          <div>
-                            <p className="text-sm font-medium text-indigo-600 truncate">
-                              {phone.name}
-                            </p>
-                            <p className="mt-2 flex items-center text-sm text-gray-500">
-                              {/* <HiMail
+          {/* <div className="flex max-w-2xl mx-auto pt-10">
+            <div className="w-full">
+              <label htmlFor="search" className="sr-only">
+                Search
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <HiSearch
+                    className="h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
+                </div>
+                <input
+                  id="search"
+                  name="search"
+                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+                  placeholder="Search"
+                  type="search"
+                />
+              </div>
+            </div>
+            <div>
+              <button>Add phone</button>
+            </div>
+          </div> */}
+
+          <div className="max-w-2xl mx-auto pt-12">
+            <div className="relative group">
+              <div className="absolute inset-0.5 bg-gradient-to-r from-indigo-600 to-sky-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+              <div className="relative bg-white shadow overflow-hidden sm:rounded-lg">
+                <ul role="list" className="divide-y divide-gray-200">
+                  {phones.map((phone) => (
+                    <li key={phone.id}>
+                      <a href={phone.href} className="block hover:bg-gray-50">
+                        <div className="flex items-center px-4 py-4 sm:px-6">
+                          <div className="min-w-0 flex-1 flex items-center">
+                            <div className="flex-shrink-0">
+                              <img
+                                className="h-16 w-14"
+                                src={phone.imageUrl}
+                                alt=""
+                              />
+                            </div>
+                            <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                              <div>
+                                <p className="text-lg font-semibold hover:text-indigo-700 truncate">
+                                  {phone.name}
+                                </p>
+                                <p className="flex items-center text-sm text-gray-500">
+                                  {/* <HiMail
                                 className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
                                 aria-hidden="true"
                               /> */}
-                              <span className="truncate">
-                                {phone.manufacturer}
-                              </span>
-                            </p>
-                          </div>
-                          <div className="hidden md:block">
-                            <div>
-                              <p className="text-sm text-gray-900">
-                                {phone.price}
-                              </p>
-                              <p className="mt-2 flex items-center text-sm text-gray-500">
-                                <HiCheckCircle
-                                  className="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400"
-                                  aria-hidden="true"
-                                />
-                                {phone.ram}GB
-                              </p>
+                                  <span className="truncate">
+                                    {phone.manufacturer}
+                                  </span>
+                                </p>
+                              </div>
+                              <div className="hidden md:block">
+                                <div>
+                                  <p className="font-medium tracking-tight text-gray-900">
+                                    {phone.price} €
+                                  </p>
+                                  <p className="mt-2 flex items-center text-sm text-gray-500">
+                                    <HiChip
+                                      className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                      aria-hidden="true"
+                                    />
+                                    {phone.ram}GB
+                                  </p>
+                                </div>
+                              </div>
                             </div>
                           </div>
+                          <div>
+                            <HiChevronRight
+                              className="h-5 w-5 text-gray-400"
+                              aria-hidden="true"
+                            />
+                          </div>
                         </div>
-                      </div>
-                      <div>
-                        <HiChevronRight
-                          className="h-5 w-5 text-gray-400"
-                          aria-hidden="true"
-                        />
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              ))}
-            </ul>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </main>
